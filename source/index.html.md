@@ -43,6 +43,7 @@ ScriptDrop expects for the API key to be included in all API requests to the ser
 You must replace <code>encoded_authorization</code> with your encoded API key
 and secret.
 </aside>
+
 # Kittens
 
 ## Get All Kittens
@@ -215,3 +216,4 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
 
+# Changelog
