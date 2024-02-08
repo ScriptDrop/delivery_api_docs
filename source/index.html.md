@@ -18,45 +18,31 @@ code_clipboard: true
 Welcome to the ScriptDrop Delivery API.
 
 # Authentication
+Authentication is performed using an API key and secret and sent using the
+`Authorization` header with the `Basic` realm.
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
+```elixir
+api_key = "pk_myapikey1234"
+api_secret = "tesk_myapisecret1234"
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+encoded_authorization = Base.url_encode64("#{api_key}:#{api_secret}")
+
+authorization_header = "Basic #{encoded_authorization}"
 ```
 
-```python
-import kittn
+ScriptDrop uses API keys to allow access to the API. Please contact our support
+team for API keys.
 
-api = kittn.authorize('meowmeowmeow')
-```
+ScriptDrop expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Basic encoded_authorization`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>encoded_authorization</code> with your encoded API key
+and secret.
 </aside>
-
 # Kittens
 
 ## Get All Kittens
