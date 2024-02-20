@@ -141,7 +141,7 @@ sameday_order_params = %{
 }
 
 HTTPoison.start()
-HTTPoison.post(url, Jason.encode!(sameday_order_params), headers)
+HTTPoison.post(url, Json.encode!(sameday_order_params), headers)
 
 ondemand_order_params = %{
   "service_level" => "ondemand",
@@ -225,7 +225,7 @@ ondemand_order_params = %{
 }
 
 HTTPoison.start()
-HTTPoison.post(url, Jason.encode!(ondemand_order_params), headers)
+HTTPoison.post(url, Json.encode!(ondemand_order_params), headers)
 
 shipping_order_params = %{
   "service_level" => "shipping",
@@ -327,7 +327,7 @@ shipping_order_params = %{
 }
 
 HTTPoison.start()
-HTTPoison.post(url, Jason.encode!(shipping_order_params), headers)
+HTTPoison.post(url, Json.encode!(shipping_order_params), headers)
 ```
 
 > The above command returns JSON structured like this:
@@ -356,15 +356,11 @@ This endpoint creates an order.
 
 | Name                      | Type                                       | Required                           | Length   | Description                                                                                                                   |
 | ------------------------- | ------------------------------------------ | ---------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| service_level             | String                                     | true                               |          | Indicate service level for order. Can be one of: `sameday`, `ondemand`, `shipping`.                                           |
-| service_date              | ISO8601 date                               | Only for sameday and shipping      |          | Indicates which day the order should be picked up on. Must be a future date the pharmacy is configured to have deliveries on. |
-| service_window_number     | Integer                                    | false                              |          | Indicates which service window the order should placed in. Only used for sameday service level. Defaults to 1.                |
-| initiator                 | String                                     | false                              |          | Indicates the source of the request. Must be one of: `pharmacy`.                                                              |
-| ready_at                  | ISO 8601 timestamp                         | false                              |          | Indicates when the order will be ready by. Only used for ondemand service level. Defaults to current time.                    |
-| delivery_fee              | Decimal                                    | Only for sameday                   |          | Delivery fee to be collected.                                                                                                 |
+| initiator                 | String                                     | false                              |          | Indicates the source of the request. Must be one of: pharmacy.                                                              |
+| delivery_fee              | Decimal                                    | Only for sameday                   |          | Delivery fee to be collected.                                                                                          |
 | rx_amount_due             | Decimal                                    | Only for sameday                   |          | Copay to be collected for the order.                                                                                          |
-| other_items_amount_due    | Decimal                                    | false. Only supported for sameday. |          | Fees related to other items to be collected.                                                                                  |
-| delivery_notes            | String                                     | false                              | max: 280 | Instructions visible to courier during delivery to assist with the delivery.                                                  |
+| other_items_amount_due    | Decimal                                    | false. Only supported for sameday. |          | Fees related to other items to be collected.                                                                              |
+| delivery_notes            | String                                     | false                              | max: 280 | Instructions visible to courier during delivery to assist with the delivery.                                                |
 | external_reference_number | String                                     | false                              | max: 255 | Reference number used to identify the order from an external system.                                                          |
 | photo_id_required         | Boolean                                    | false. Only supported for sameday. |          | Indicates whether a photo ID is required for delivery.                                                                        |
 | pharmacy                  | [Pharmacy](#pharmacy-parameters)           | true                               |          | Pharmacy details.                                                                                                             |
