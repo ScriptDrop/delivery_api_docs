@@ -1166,3 +1166,46 @@ HTTP status code 204
 ### Error Response
 
 See [Errors](#errors)
+
+## Get Delivery Information
+
+```elixir
+url = "https://delvery.scriptdrop.co/api/v1/pharmacies/1234567"
+
+headers = [
+  {"Authorization", "Basic encoded_authorization"},
+  {"Content-type", "application/json"}
+]
+
+HTTPoison.start()
+HTTPoison.get(url, headers)
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "TBD"
+}
+```
+
+### HTTP Request
+
+`GET https://delivery.scriptdrop.co/api/v1/pharmacies/:id`
+
+### Parameters
+
+| Name                      | Type    | Required | Length   | Description                                                         |
+| ------------------------- | ------- | -------- | -------- | ------------------------------------------------------------------- |
+| :id                       | String  |          |          | The NPI or NCPDP of the pharmacy.                                   |
+| :delivery.address         | Address | true     |          | Recipient's location (i.e. dropoff location)                        |
+| :POD                      |         |          |          | "Null = Defualts to pharmacy configuration POD signature (anyone can sign)"|
+| :package                  |         |          |          | Coverage type. Can be one of `primary`, `secondary`, or `tertiary`. |
+| :saturday.delivery        | Boolean | false    |          | Value indicating whether Saturday should be in included in the possible days for delivery. This option is ONLY available for UPS 2nd Day Air and UPS Next Day Air                |
+
+### 200 Response Schema
+
+TBD
+
+### Error Response
+
+See [Errors](#errors)
