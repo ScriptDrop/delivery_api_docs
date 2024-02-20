@@ -58,9 +58,6 @@ headers = [
 ]
 
 sameday_order_params = %{
-  "service_level" => "sameday",
-  "service_date" => "2022-12-10",
-  "service_window_number" => 1,
   "delivery_fee" => 5.00,
   "rx_amount_due" => 2.00,
   "other_items_amount_due" => 3.50,
