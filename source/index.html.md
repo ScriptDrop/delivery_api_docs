@@ -1167,6 +1167,8 @@ HTTP status code 204
 
 See [Errors](#errors)
 
+# V1 Pharmacies
+
 ## Get Delivery Information
 
 ```elixir
