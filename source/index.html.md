@@ -1167,7 +1167,7 @@ HTTP status code 204
 
 See [Errors](#errors)
 
-# V1 Pharmacies
+# V1 Delivery Options
 
 ## Get Delivery Information
 
